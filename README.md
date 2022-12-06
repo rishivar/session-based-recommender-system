@@ -25,14 +25,15 @@ During the training phase, the items that are viewed in a session are used to pr
 
 **Generating item embeddings using Variational Auto Encoder:**
 
-  The feature vector for every item is represented by a 904 (number of features) length vector. To mitigate the problem of overfitting and to reduce the complexity of the data representation, Variational Auto Encoder (VAE) is employed for dimensionality reduction of the feature vector. For our use-case, we trained a VAE with a latent space of size 64.**
+  The feature vector for every item is represented by a 904 (number of features) length vector. To mitigate the problem of overfitting and to reduce the complexity of the data representation, Variational Auto Encoder (VAE) is employed for dimensionality reduction of the feature vector. For our use-case, we trained a VAE with a latent space of size 64.
 
 
 **Training:**
 
 The LSTM model was trained on a Google Colab instance with 12GB of RAM and NVIDIA Tesla K80 GPU. Sparse Categorical Cross entropy loss function is used with an Adam optimizer. Dropout regularization with an inverted dropout rate of 0.2 is used to avoid overfitting. A validation split of 0.02 is used to evaluate the model at the end of every epoch. If the validation loss does not decrease in four successive epochs the training is automatically stopped.
 
-**Results**
+**Results:**
+
 The baseline word2vec model yielded a Mean Reciprocal Rank of 6.4% on the test dataset and the LSTM4REC model gave a Mean Reciprocal Rank of 14.8% on the test dataset.
 
 
