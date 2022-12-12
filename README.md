@@ -15,20 +15,20 @@ For every test sample, the top 100 recommendations are fetched from the model an
 If the ground truth is present in the recommendations returned by the model, the reciprocal rank is calculated for the sample. Otherwise, it is considered as zero.
 
 
-**Baseline Model**
+**[Baseline Model](notebooks/baseline_word2vec.ipynb)**
 
 A Word2vec Continuous Bag Of Words (CBOW) model is used as the baseline model for this problem. We train a CBOW model to predict an item in a session given the other items that were viewed or purchased in the session This lets the neural network learn the relationship between the various items that were viewed or purchased in a session.
 
-**LSTM4REC**
+**[LSTM4REC](notebooks/RNN4Rec.ipynb)**
 
 During the training phase, the items that are viewed in a session are used to predict the item purchased in the session. Every item is represented as a feature vector of length 64. This analogy corresponds to word embeddings that are used when training LSTM models. The feature vector for every item is obtained using a Variational Autoencoder.
 
-**Generating item embeddings using Variational Auto Encoder:**
+**[Generating item embeddings using Variational Auto Encoder](notebooks/VAE_Embedding.ipynb)**
 
   The feature vector for every item is represented by a 904 (number of features) length vector. To mitigate the problem of overfitting and to reduce the complexity of the data representation, Variational Auto Encoder (VAE) is employed for dimensionality reduction of the feature vector. For our use-case, we trained a VAE with a latent space of size 64.
 
 
-**Training:**
+**Training**
 
 The LSTM model was trained on a Google Colab instance with 12GB of RAM and NVIDIA Tesla K80 GPU. Sparse Categorical Cross entropy loss function is used with an Adam optimizer. Dropout regularization with an inverted dropout rate of 0.2 is used to avoid overfitting. A validation split of 0.02 is used to evaluate the model at the end of every epoch. If the validation loss does not decrease in four successive epochs the training is automatically stopped.
 
